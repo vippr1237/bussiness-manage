@@ -1,7 +1,8 @@
-#### Install
-mvn clean install
+#### Mô tả
+API Demo cho lớp devops
 
-</br>
-#### dev enviroments
-
+#### Chạy môi trường dev
 mvn spring-boot:start
+
+#### Chạy docker 
+docker-compose up
