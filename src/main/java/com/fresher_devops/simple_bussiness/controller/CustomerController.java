@@ -51,6 +51,7 @@ public class CustomerController {
 		return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
 	}
 
+	// Theo stackoverflow thì transaction cập nhật nên phải thêm
 	@Transactional
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable("id") Long id) {
