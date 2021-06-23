@@ -1,5 +1,6 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+FROM maven:latest
+RUN mkdir /app
+WORKDIR /app
+COPY . .
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
+CMD ["mvn", "spring-boot:run"]

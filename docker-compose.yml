@@ -1,35 +1,32 @@
-version: '3.7'
+version: "3.7"
 
-services: 
- server:
-  build:
-   context: .
-   dockerfile: Dockerfile
-  ports:
-   - "8080:8080"
-  restart: always
-  depends_on:
-   - mysqldb
-  environment:
-   SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/spring_db?autoReconnect=true&useSSL=true
-   SPRING_DATASOURCE_USERNAME: root
-   SPRING_DATASOURCE_PASSWORD: root
-  networks:
-   - backend
- mysqldb:
-  image: mysql:latest
-  ports:
-   - "3304:3306"
-  restart: always
-  environment:
-   MYSQL_DATABASE: spring_db
-   MYSQL_ROOT_PASSWORD: root
-  volumes:
-   - db-data:/var/lib/mysql
-  networks:
-   - backend
+services:
+  mysqldb:
+    image: mysql:latest
+    ports:
+      - "3305:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=spring_db
+    networks:
+      - backend
+    volumes:
+      - db-data:/var/lib/mysql
+  server:
+    image: java-test
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/spring_db?autoReconnect=true&useSSL=true
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+    restart: always
+    depends_on:
+      - mysqldb
+    networks:
+      - backend
+
 volumes:
- db-data:
-
+  db-data:
 networks:
- backend: 
+  backend:
