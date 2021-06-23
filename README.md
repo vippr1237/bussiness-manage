@@ -5,4 +5,8 @@ API Demo cho lớp devops
 mvn spring-boot:start
 
 #### Chạy docker 
+
+docker build -t java-test .
+
+</br>
 docker-compose up
