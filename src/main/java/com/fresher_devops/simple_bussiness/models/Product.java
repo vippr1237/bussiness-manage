@@ -22,12 +22,6 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Long id, String productName, float price) {
-        this.id = id;
-        this.productName = productName;
-        this.price = price;
-    }
-
     public Product(String productName, float price) {
         this.productName = productName;
         this.price = price;

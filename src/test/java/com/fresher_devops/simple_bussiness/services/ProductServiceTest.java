@@ -50,7 +50,7 @@ class ProductServiceTest {
 
     @Test
     void canUpdateProduct() {
-        Product product = new Product(2L, "product-01", 10);
+        Product product = new Product(null, 10);
         //when
         underTest.updateProduct(product);
         //then
@@ -64,7 +64,7 @@ class ProductServiceTest {
     void canFindProductById() {
         Long id = 1L;
         //when
-        Product product = new Product(id, null, 10);
+        Product product = new Product(null, 10);
         when(productRepo.findProductById(id)).thenReturn(Optional.of(product));
         underTest.findProductById(id);
         //then
