@@ -27,25 +27,25 @@ public class CustomerController {
 		this.customerService = customerService;
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<Customer>> getAllCustomers() {
 		List<Customer> Customers = customerService.findAllCustomers();
 		return new ResponseEntity<>(Customers, HttpStatus.OK);
 	}
 
-	@GetMapping("/find/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
 		Customer Customer = customerService.findCustomerById(id);
 		return new ResponseEntity<>(Customer, HttpStatus.OK);
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer Customer) {
 		Customer newCustomer = customerService.addCustomer(Customer);
 		return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/")
 	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer Customer) {
 		Customer updateCustomer = customerService.updateCustomer(Customer);
 		return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
@@ -53,7 +53,7 @@ public class CustomerController {
 
 	// Theo stackoverflow thì transaction cập nhật nên phải thêm
 	@Transactional
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable("id") Long id) {
 		customerService.deleteCustomer(id);
 		return new ResponseEntity<>(HttpStatus.OK);

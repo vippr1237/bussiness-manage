@@ -27,32 +27,32 @@ public class ReceiptDetailController {
 		this.receiptDetailService = receiptDetailService;
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<ReceiptDetail>> getAllReceiptDetails() {
 		List<ReceiptDetail> ReceiptDetails = receiptDetailService.findAllReceiptDetails();
 		return new ResponseEntity<>(ReceiptDetails, HttpStatus.OK);
 	}
 
-	@GetMapping("/find/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<ReceiptDetail> getReceiptDetailById(@PathVariable("id") Long id) {
 		ReceiptDetail ReceiptDetail = receiptDetailService.findReceiptDetailById(id);
 		return new ResponseEntity<>(ReceiptDetail, HttpStatus.OK);
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<ReceiptDetail> addReceiptDetail(@RequestBody ReceiptDetail ReceiptDetail) {
 		ReceiptDetail newReceiptDetail = receiptDetailService.addReceiptDetail(ReceiptDetail);
 		return new ResponseEntity<>(newReceiptDetail, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/")
 	public ResponseEntity<ReceiptDetail> updateReceiptDetail(@RequestBody ReceiptDetail ReceiptDetail) {
 		ReceiptDetail updateReceiptDetail = receiptDetailService.updateReceiptDetail(ReceiptDetail);
 		return new ResponseEntity<>(updateReceiptDetail, HttpStatus.OK);
 	}
 
 	@Transactional
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteReceiptDetail(@PathVariable("id") Long id) {
 		receiptDetailService.deleteReceiptDetail(id);
 		return new ResponseEntity<>(HttpStatus.OK);

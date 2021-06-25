@@ -27,32 +27,32 @@ public class ReceiptController {
 		this.receiptService = receiptService;
 	}
 
-	@GetMapping("/all")
+	@GetMapping("/")
 	public ResponseEntity<List<Receipt>> getAllReceipts() {
 		List<Receipt> Receipts = receiptService.findAllReceipts();
 		return new ResponseEntity<>(Receipts, HttpStatus.OK);
 	}
 
-	@GetMapping("/find/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Receipt> getReceiptById(@PathVariable("id") Long id) {
 		Receipt Receipt = receiptService.findReceiptById(id);
 		return new ResponseEntity<>(Receipt, HttpStatus.OK);
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public ResponseEntity<Receipt> addReceipt(@RequestBody Receipt Receipt) {
 		Receipt newReceipt = receiptService.addReceipt(Receipt);
 		return new ResponseEntity<>(newReceipt, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/")
 	public ResponseEntity<Receipt> updateReceipt(@RequestBody Receipt Receipt) {
 		Receipt updateReceipt = receiptService.updateReceipt(Receipt);
 		return new ResponseEntity<>(updateReceipt, HttpStatus.OK);
 	}
 
 	@Transactional
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteReceipt(@PathVariable("id") Long id) {
 		receiptService.deleteReceipt(id);
 		return new ResponseEntity<>(HttpStatus.OK);
